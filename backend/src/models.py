@@ -11,6 +11,12 @@ engine = create_engine(
 class Hero(SQLModel, table=True):
     id: int|None = Field(default=None, primary_key=True)
     name: str
+    
+class HeroUpdate(SQLModel):
+    name: str
+
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
 
 # test database
 if __name__ == '__main__':
