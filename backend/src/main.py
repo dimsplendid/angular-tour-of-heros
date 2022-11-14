@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from sqlmodel import Session, create_engine, select
+from sqlmodel import Session, create_engine, select, col
 
 from .models import (
     engine, 
@@ -72,6 +72,13 @@ async def delete_hero(id: int, session: Session = Depends(get_session)):
     session.delete(hero)
     session.commit()
     return {'ok': True}
+
+@app.get('/hero/search/')
+async def search_heroes(name: str, session: Session = Depends(get_session)):
+    heroes = session.exec(
+        select(Hero).where(col(Hero.name).contains(name))
+    ).all()
+    return heroes
 
 @app.on_event('startup')
 def on_startup():
