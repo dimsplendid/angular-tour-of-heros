@@ -15,6 +15,7 @@ settings = Settings() # type: ignore
 app = FastAPI(debug=settings.debug)
 
 origins = [
+    'http://127.0.0.1:4200',
     'http://localhost:4200',
 ]
 

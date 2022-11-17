@@ -27,7 +27,8 @@ export class HeroService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-  private heroUrl = 'http://127.0.0.1:8000/hero/';  // URL to web api
+  // private heroUrl = 'http://127.0.0.1:8000/hero/';  // URL to web api
+  private heroUrl = 'http://192.168.0.156:8000/hero/';  // URL to web api
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
